@@ -1,0 +1,2223 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/12/2025 9:52:34 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="KIKE-PC"
+  DTS:CreatorName="KIKE-PC\Quike"
+  DTS:DTSID="{5466857B-0D9F-4827-A555-C0D439154C57}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{EFC3A81E-9B1C-4F5B-B2BF-C036540D02A3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{FA1D1A96-5CDA-4417-8681-8CA7B6C60D3D}"
+      DTS:ObjectName="Administrador de conexiones con Excel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Quike\OneDrive\Documentos\GitHub\datawarehouse2025\Excels\Consolidado_Pais.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[KIKE-PC\SQL2022DW.db_roaming_costarica]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9AF9A778-5E0E-485C-8449-F916CEC647CB}"
+      DTS:ObjectName="KIKE-PC\SQL2022DW.db_roaming_costarica">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=KIKE-PC\SQL2022DW;Initial Catalog=db_roaming_costarica;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{9AF9A778-5E0E-485C-8449-F916CEC647CB}KIKE-PC\SQL2022DW.db_roaming_costarica;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[KIKE-PC\SQL2022DW.db_roaming_guatemala]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0C0DCF55-FF08-41A0-8825-14E6C1560C04}"
+      DTS:ObjectName="KIKE-PC\SQL2022DW.db_roaming_guatemala">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=KIKE-PC\SQL2022DW;Initial Catalog=db_roaming_guatemala;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{0C0DCF55-FF08-41A0-8825-14E6C1560C04}KIKE-PC\SQL2022DW.db_roaming_guatemala;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[KIKE-PC\SQL2022DW.db_roaming_honduras]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{61ADBA83-D372-4D95-BF11-BDD9FB6966EB}"
+      DTS:ObjectName="KIKE-PC\SQL2022DW.db_roaming_honduras">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=KIKE-PC\SQL2022DW;Initial Catalog=db_roaming_honduras;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{61ADBA83-D372-4D95-BF11-BDD9FB6966EB}KIKE-PC\SQL2022DW.db_roaming_honduras;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_Consolidado_Roaming"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8ED7BE37-6191-4CC5-B8C0-EBE40F268419}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_Consolidado_Roaming">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_Consolidado_Roaming\AGG_PorPais"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates data with functions such as Average, Sum, Count, Max, and Min. For example, group data to compute the sum of sales per product or the average visits per day."
+              name="AGG_PorPais"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Inputs[Aggregate Input 1].Columns[pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="pais"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[pais]" />
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Inputs[Aggregate Input 1].Columns[idfacturacion]"
+                      cachedDataType="i4"
+                      cachedName="idfacturacion"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idfacturacion]" />
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Inputs[Aggregate Input 1].Columns[monto_facturacion]"
+                      cachedDataType="numeric"
+                      cachedName="monto_facturacion"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[monto_facturacion]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Outputs[Aggregate Output 1].Columns[pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Outputs[Aggregate Output 1].Columns[pais]"
+                      name="pais">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[pais]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Outputs[Aggregate Output 1].Columns[idfacturacion]"
+                      dataType="ui8"
+                      lineageId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Outputs[Aggregate Output 1].Columns[idfacturacion]"
+                      name="idfacturacion">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idfacturacion]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Outputs[Aggregate Output 1].Columns[monto_facturacion]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Outputs[Aggregate Output 1].Columns[monto_facturacion]"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[monto_facturacion]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates data with functions such as Average, Sum, Count, Max, and Min. For example, group data to compute the sum of sales per product or the average visits per day."
+              name="AGG_PorTipoCliente"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Inputs[Aggregate Input 1].Columns[idtipocliente]"
+                      cachedDataType="i4"
+                      cachedName="idtipocliente"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idtipocliente]" />
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Inputs[Aggregate Input 1].Columns[idfacturacion]"
+                      cachedDataType="i4"
+                      cachedName="idfacturacion"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idfacturacion]" />
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Inputs[Aggregate Input 1].Columns[monto_facturacion]"
+                      cachedDataType="numeric"
+                      cachedName="monto_facturacion"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[monto_facturacion]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Outputs[Aggregate Output 1].Columns[idtipocliente]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Outputs[Aggregate Output 1].Columns[idtipocliente]"
+                      name="idtipocliente">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idtipocliente]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Outputs[Aggregate Output 1].Columns[idfacturacion]"
+                      dataType="ui8"
+                      lineageId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Outputs[Aggregate Output 1].Columns[idfacturacion]"
+                      name="idfacturacion">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idfacturacion]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Outputs[Aggregate Output 1].Columns[monto_facturacion]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Outputs[Aggregate Output 1].Columns[monto_facturacion]"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[monto_facturacion]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Consolidado_Roaming\Excel Destination"
+              componentClassID="Microsoft.ExcelDestination"
+              contactInfo="Excel Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Excel Destination"
+              name="Excel Destination"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Consolidado_Pais$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Consolidado_Roaming\Excel Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Consolidado_Roaming\Excel Destination.Inputs[Excel Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Excel Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination.Inputs[Excel Destination Input].Columns[idfacturacion]"
+                      cachedDataType="ui8"
+                      cachedName="idfacturacion"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[TotalVentas]"
+                      lineageId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Outputs[Aggregate Output 1].Columns[idfacturacion]" />
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination.Inputs[Excel Destination Input].Columns[monto_facturacion]"
+                      cachedDataType="numeric"
+                      cachedName="monto_facturacion"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[TotalFacturacion]"
+                      lineageId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Outputs[Aggregate Output 1].Columns[monto_facturacion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[TotalVentas]"
+                      dataType="wstr"
+                      length="255"
+                      name="TotalVentas" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[TotalFacturacion]"
+                      dataType="wstr"
+                      length="255"
+                      name="TotalFacturacion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[pais]"
+                      dataType="wstr"
+                      length="255"
+                      name="pais" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\Excel Destination.Outputs[Excel Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Excel Destination Error Output"
+                  synchronousInputId="Package\DFT_Consolidado_Roaming\Excel Destination.Inputs[Excel Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Consolidado_Roaming\Excel Destination 1"
+              componentClassID="Microsoft.ExcelDestination"
+              contactInfo="Excel Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Excel Destination"
+              name="Excel Destination 1"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Consolidado_TipoCliente$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Excel Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input].Columns[idtipocliente]"
+                      cachedDataType="i4"
+                      cachedName="idtipocliente"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input].ExternalColumns[NombreTipoCliente]"
+                      lineageId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Outputs[Aggregate Output 1].Columns[idtipocliente]" />
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input].Columns[idfacturacion]"
+                      cachedDataType="ui8"
+                      cachedName="idfacturacion"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input].ExternalColumns[TotalVentas]"
+                      lineageId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Outputs[Aggregate Output 1].Columns[idfacturacion]" />
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input].Columns[monto_facturacion]"
+                      cachedDataType="numeric"
+                      cachedName="monto_facturacion"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input].ExternalColumns[TotalFacturacion]"
+                      lineageId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Outputs[Aggregate Output 1].Columns[monto_facturacion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input].ExternalColumns[NombreTipoCliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="NombreTipoCliente" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input].ExternalColumns[TotalVentas]"
+                      dataType="wstr"
+                      length="255"
+                      name="TotalVentas" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input].ExternalColumns[TotalFacturacion]"
+                      dataType="wstr"
+                      length="255"
+                      name="TotalFacturacion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Outputs[Excel Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Excel Destination Error Output"
+                  synchronousInputId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Consolidado_Roaming\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\DFT_Consolidado_Roaming\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\Multicast.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\DFT_Consolidado_Roaming\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\Multicast.Outputs[Multicast Output 2]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\DFT_Consolidado_Roaming\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\Multicast.Outputs[Multicast Output 3]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 3"
+                  synchronousInputId="Package\DFT_Consolidado_Roaming\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source Cost Rica"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[cliente]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    f.idfacturacion,
+    f.idcliente,
+    f.monto_facturacion,
+    c.idtipocliente,
+    c.nombres,
+    c.apellidos,
+    'Costa Rica' AS pais
+FROM dbo.facturacion f
+INNER JOIN dbo.cliente c ON f.idcliente = c.idcliente;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[KIKE-PC\SQL2022DW.db_roaming_costarica]"
+                  connectionManagerRefId="Package.ConnectionManagers[KIKE-PC\SQL2022DW.db_roaming_costarica]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[idcliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[idcliente]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[idcliente]"
+                      name="idcliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[idtipocliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[idtipocliente]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[idtipocliente]"
+                      name="idtipocliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[apellidos]"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[apellidos]"
+                      name="apellidos"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[nombres]"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[nombres]"
+                      name="nombres"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[idfacturacion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[idfacturacion]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[idfacturacion]"
+                      name="idfacturacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[monto_facturacion]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[monto_facturacion]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[monto_facturacion]"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[pais]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                      length="10"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[pais]"
+                      name="pais"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[idcliente]"
+                      dataType="i4"
+                      name="idcliente" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[idtipocliente]"
+                      dataType="i4"
+                      name="idtipocliente" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="apellidos" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="nombres" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[idfacturacion]"
+                      dataType="i4"
+                      name="idfacturacion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[monto_facturacion]"
+                      dataType="numeric"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="pais" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[idfacturacion]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[idfacturacion]"
+                      name="idfacturacion" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[idcliente]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[idcliente]"
+                      name="idcliente" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[monto_facturacion]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[monto_facturacion]"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[idtipocliente]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[idtipocliente]"
+                      name="idtipocliente" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[apellidos]"
+                      name="apellidos" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[nombres]"
+                      name="nombres" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[pais]"
+                      name="pais" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source Guatemala"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[cliente]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    f.idfacturacion,
+    f.idcliente,
+    f.monto_facturacion,
+    c.idtipocliente,
+    c.nombres,
+    c.apellidos,
+    'Guatemala' AS pais
+FROM dbo.facturacion f
+INNER JOIN dbo.cliente c ON f.idcliente = c.idcliente;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[KIKE-PC\SQL2022DW.db_roaming_guatemala]"
+                  connectionManagerRefId="Package.ConnectionManagers[KIKE-PC\SQL2022DW.db_roaming_guatemala]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[idcliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[idcliente]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[idcliente]"
+                      name="idcliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[idtipocliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[idtipocliente]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[idtipocliente]"
+                      name="idtipocliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[monto_facturacion]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[monto_facturacion]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[monto_facturacion]"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[pais]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                      length="9"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[pais]"
+                      name="pais"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[idfacturacion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[idfacturacion]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[idfacturacion]"
+                      name="idfacturacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[nombres]"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[nombres]"
+                      name="nombres"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[apellidos]"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[apellidos]"
+                      name="apellidos"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[idcliente]"
+                      dataType="i4"
+                      name="idcliente" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[idtipocliente]"
+                      dataType="i4"
+                      name="idtipocliente" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[monto_facturacion]"
+                      dataType="numeric"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="pais" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[idfacturacion]"
+                      dataType="i4"
+                      name="idfacturacion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="nombres" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].ExternalColumns[apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="apellidos" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[idfacturacion]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[idfacturacion]"
+                      name="idfacturacion" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[idcliente]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[idcliente]"
+                      name="idcliente" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[monto_facturacion]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[monto_facturacion]"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[idtipocliente]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[idtipocliente]"
+                      name="idtipocliente" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[nombres]"
+                      name="nombres" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[apellidos]"
+                      name="apellidos" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[pais]"
+                      name="pais" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source Honduras"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[cliente]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    f.idfacturacion,
+    f.idcliente,
+    f.monto_facturacion,
+    c.idtipocliente,
+    c.nombres,
+    c.apellidos,
+    'Honduras' AS pais
+FROM dbo.facturacion f
+INNER JOIN dbo.cliente c ON f.idcliente = c.idcliente;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[KIKE-PC\SQL2022DW.db_roaming_honduras]"
+                  connectionManagerRefId="Package.ConnectionManagers[KIKE-PC\SQL2022DW.db_roaming_honduras]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[idcliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[idcliente]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[idcliente]"
+                      name="idcliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[monto_facturacion]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[monto_facturacion]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[monto_facturacion]"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[pais]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                      length="8"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[pais]"
+                      name="pais"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[idtipocliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[idtipocliente]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[idtipocliente]"
+                      name="idtipocliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[idfacturacion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[idfacturacion]"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[idfacturacion]"
+                      name="idfacturacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[nombres]"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[nombres]"
+                      name="nombres"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[apellidos]"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[apellidos]"
+                      name="apellidos"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[idcliente]"
+                      dataType="i4"
+                      name="idcliente" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[monto_facturacion]"
+                      dataType="numeric"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="pais" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[idtipocliente]"
+                      dataType="i4"
+                      name="idtipocliente" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[idfacturacion]"
+                      dataType="i4"
+                      name="idfacturacion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="nombres" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].ExternalColumns[apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="apellidos" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[idfacturacion]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[idfacturacion]"
+                      name="idfacturacion" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[idcliente]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[idcliente]"
+                      name="idcliente" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[monto_facturacion]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[monto_facturacion]"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[idtipocliente]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[idtipocliente]"
+                      name="idtipocliente" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[nombres]"
+                      name="nombres" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[apellidos]"
+                      name="apellidos" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[pais]"
+                      name="pais" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="UNION_All_TodasLasVentas"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 1].Columns[idcliente]"
+                      cachedDataType="i4"
+                      cachedName="idcliente"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[idcliente]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idcliente]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 1].Columns[idtipocliente]"
+                      cachedDataType="i4"
+                      cachedName="idtipocliente"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[idtipocliente]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idtipocliente]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 1].Columns[idfacturacion]"
+                      cachedDataType="i4"
+                      cachedName="idfacturacion"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[idfacturacion]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idfacturacion]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 1].Columns[monto_facturacion]"
+                      cachedDataType="numeric"
+                      cachedName="monto_facturacion"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[monto_facturacion]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[monto_facturacion]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 1].Columns[pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="pais"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[pais]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[pais]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 1].Columns[apellidos]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="apellidos"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[apellidos]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[apellidos]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 1].Columns[nombres]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="nombres"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output].Columns[nombres]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[nombres]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 2].Columns[idcliente]"
+                      cachedDataType="i4"
+                      cachedName="idcliente"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[idcliente]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idcliente]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 2].Columns[idtipocliente]"
+                      cachedDataType="i4"
+                      cachedName="idtipocliente"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[idtipocliente]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idtipocliente]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 2].Columns[apellidos]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="apellidos"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[apellidos]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[apellidos]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 2].Columns[nombres]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="nombres"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[nombres]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[nombres]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 2].Columns[idfacturacion]"
+                      cachedDataType="i4"
+                      cachedName="idfacturacion"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[idfacturacion]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idfacturacion]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 2].Columns[monto_facturacion]"
+                      cachedDataType="numeric"
+                      cachedName="monto_facturacion"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[monto_facturacion]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[monto_facturacion]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 2].Columns[pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="pais"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output].Columns[pais]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[pais]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 3].Columns[idcliente]"
+                      cachedDataType="i4"
+                      cachedName="idcliente"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[idcliente]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idcliente]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 3].Columns[idtipocliente]"
+                      cachedDataType="i4"
+                      cachedName="idtipocliente"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[idtipocliente]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idtipocliente]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 3].Columns[apellidos]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="apellidos"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[apellidos]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[apellidos]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 3].Columns[nombres]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="nombres"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[nombres]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[nombres]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 3].Columns[idfacturacion]"
+                      cachedDataType="i4"
+                      cachedName="idfacturacion"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[idfacturacion]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idfacturacion]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 3].Columns[monto_facturacion]"
+                      cachedDataType="numeric"
+                      cachedName="monto_facturacion"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[monto_facturacion]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[monto_facturacion]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 3].Columns[pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="pais"
+                      lineageId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output].Columns[pais]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[pais]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 4]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 4">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idcliente]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idcliente]"
+                      name="idcliente" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idtipocliente]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idtipocliente]"
+                      name="idtipocliente" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[apellidos]"
+                      name="apellidos" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[nombres]"
+                      name="nombres" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idfacturacion]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[idfacturacion]"
+                      name="idfacturacion" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[monto_facturacion]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[monto_facturacion]"
+                      name="monto_facturacion"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1].Columns[pais]"
+                      name="pais" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_Consolidado_Roaming.Paths[Aggregate Output 1]"
+              endId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Inputs[Excel Destination Input]"
+              name="Aggregate Output 1"
+              startId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\DFT_Consolidado_Roaming.Paths[Aggregate Output 11]"
+              endId="Package\DFT_Consolidado_Roaming\Excel Destination.Inputs[Excel Destination Input]"
+              name="Aggregate Output 1"
+              startId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\DFT_Consolidado_Roaming.Paths[Multicast Output 1]"
+              endId="Package\DFT_Consolidado_Roaming\AGG_PorPais.Inputs[Aggregate Input 1]"
+              name="Multicast Output 1"
+              startId="Package\DFT_Consolidado_Roaming\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\DFT_Consolidado_Roaming.Paths[Multicast Output 2]"
+              endId="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente.Inputs[Aggregate Input 1]"
+              name="Multicast Output 2"
+              startId="Package\DFT_Consolidado_Roaming\Multicast.Outputs[Multicast Output 2]" />
+            <path
+              refId="Package\DFT_Consolidado_Roaming.Paths[OLE DB Source Output]"
+              endId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_Consolidado_Roaming.Paths[OLE DB Source Output1]"
+              endId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 2]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_Consolidado_Roaming.Paths[OLE DB Source Output2]"
+              endId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Inputs[Union All Input 3]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_Consolidado_Roaming.Paths[Union All Output 1]"
+              endId="Package\DFT_Consolidado_Roaming\Multicast.Inputs[Multicast Input 1]"
+              name="Union All Output 1"
+              startId="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="214.666666666667,42.6666666666667"
+          Id="Package\DFT_Consolidado_Roaming"
+          TopLeft="74.8749982398004,48.4999998572626" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_Consolidado_Roaming">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170.666666666667,42.6666666666667"
+          Id="Package\DFT_Consolidado_Roaming\Excel Destination 1"
+          TopLeft="435.641014522467,333.333326639273" />
+        <NodeLayout
+          Size="121.333333333334,42.6666666666667"
+          Id="Package\DFT_Consolidado_Roaming\Multicast"
+          TopLeft="337.094007047833,195.783470036977" />
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\DFT_Consolidado_Roaming\Excel Destination"
+          TopLeft="223.841874996312,334.995716675989" />
+        <NodeLayout
+          Size="204,42.6666666666667"
+          Id="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica"
+          TopLeft="557.499984443188,34.5000000298023" />
+        <NodeLayout
+          Size="217.333333333334,42.6666666666667"
+          Id="Package\DFT_Consolidado_Roaming\UNION_All_TodasLasVentas"
+          TopLeft="286.666658123334,123.333329657714" />
+        <NodeLayout
+          Size="204,42.6666666666667"
+          Id="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras"
+          TopLeft="62.388887193468,31.7222214407391" />
+        <NodeLayout
+          Size="210.666666666667,42.6666666666667"
+          Id="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala"
+          TopLeft="290.166658182939,30.499999254942" />
+        <NodeLayout
+          Size="180,42.6666666666667"
+          Id="Package\DFT_Consolidado_Roaming\AGG_PorTipoCliente"
+          TopLeft="432.564091537243,264.102559471742" />
+        <NodeLayout
+          Size="146.666666666667,42.6666666666667"
+          Id="Package\DFT_Consolidado_Roaming\AGG_PorPais"
+          TopLeft="231.538458168507,264.61538039721" />
+        <EdgeLayout
+          Id="Package\DFT_Consolidado_Roaming.Paths[OLE DB Source Output1]"
+          TopLeft="395.416658153137,73.1666659216086">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.1666637361051"
+              Start="0,0"
+              End="0,42.6666637361051">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.6666637361051" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Consolidado_Roaming.Paths[OLE DB Source Output]"
+          TopLeft="164.388887193468,74.3888881074058">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="178.6111042632,48.9444415503079"
+              Start="0,0"
+              End="178.6111042632,41.4444415503079">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.2341170614149" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.2341170614149"
+                    Point2="0,32.2341170614149"
+                    Point3="4,32.2341170614149" />
+                  <mssgle:LineSegment
+                    End="174.6111042632,32.2341170614149" />
+                  <mssgle:CubicBezierSegment
+                    Point1="174.6111042632,32.2341170614149"
+                    Point2="178.6111042632,32.2341170614149"
+                    Point3="178.6111042632,36.2341170614149" />
+                  <mssgle:LineSegment
+                    End="178.6111042632,41.4444415503079" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Consolidado_Roaming.Paths[Multicast Output 2]"
+          TopLeft="416.649562603388,238.450136703644">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="105.914528933855,25.6524227680983"
+              Start="0,0"
+              End="105.914528933855,18.1524227680983">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.46129171453903" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,6.46129171453903"
+                    Point2="0,10.461291714539"
+                    Point3="4,10.461291714539" />
+                  <mssgle:LineSegment
+                    End="101.914528933855,10.461291714539" />
+                  <mssgle:CubicBezierSegment
+                    Point1="101.914528933855,10.461291714539"
+                    Point2="105.914528933855,10.461291714539"
+                    Point3="105.914528933855,14.461291714539" />
+                  <mssgle:LineSegment
+                    End="105.914528933855,18.1524227680983" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Consolidado_Roaming.Paths[Multicast Output 1]"
+          TopLeft="397.7606737145,238.450136703644">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-92.8888822126595,26.1652436935661"
+              Start="0,0"
+              End="-92.8888822126595,18.6652436935661">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.08262184678307" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.08262184678307"
+                    Point2="0,13.0826218467831"
+                    Point3="-4,13.0826218467831" />
+                  <mssgle:LineSegment
+                    End="-88.8888822126595,13.0826218467831" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-88.8888822126595,13.0826218467831"
+                    Point2="-92.8888822126595,13.0826218467831"
+                    Point3="-92.8888822126595,17.0826218467831" />
+                  <mssgle:LineSegment
+                    End="-92.8888822126595,18.6652436935661" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Consolidado_Roaming.Paths[Aggregate Output 1]"
+          TopLeft="521.769219696522,306.769226138409">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.5641005008649"
+              Start="0,0"
+              End="0,19.0641005008649">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.0641005008649" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Consolidado_Roaming.Paths[Union All Output 1]"
+          TopLeft="396.54699925225,165.99999632438">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.7834737125965"
+              Start="0,0"
+              End="0,22.2834737125965">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.2834737125965" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Consolidado_Roaming.Paths[OLE DB Source Output2]"
+          TopLeft="659.499984443188,77.166666696469">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-211.833326319854,46.1666629612447"
+              Start="0,0"
+              End="-211.833326319854,38.6666629612447">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.4047113643753" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.4047113643753"
+                    Point2="0,30.4047113643753"
+                    Point3="-4,30.4047113643753" />
+                  <mssgle:LineSegment
+                    End="-207.833326319854,30.4047113643753" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-207.833326319854,30.4047113643753"
+                    Point2="-211.833326319854,30.4047113643753"
+                    Point3="-211.833326319854,34.4047113643753" />
+                  <mssgle:LineSegment
+                    End="-211.833326319854,38.6666629612447" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Consolidado_Roaming.Paths[Aggregate Output 11]"
+          TopLeft="305.023499915743,307.282047063877">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.7136696121123"
+              Start="0,0"
+              End="0,20.2136696121123">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2136696121123" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Consolidado_Roaming\Excel Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Consolidado_Roaming\Excel Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Consolidado_Roaming\OLE DB Source Cost Rica">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Consolidado_Roaming\OLE DB Source Honduras">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Consolidado_Roaming\OLE DB Source Guatemala">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
