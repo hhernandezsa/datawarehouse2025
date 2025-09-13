@@ -11,8 +11,8 @@
   DTS:LocaleID="2058"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{EFC3A81E-9B1C-4F5B-B2BF-C036540D02A3}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{3C74E06E-F612-452E-BA4B-0082E8C5A693}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -26,6 +26,18 @@
           DTS:ConnectRetryCount="0"
           DTS:ConnectRetryInterval="0"
           DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Quike\OneDrive\Documentos\GitHub\datawarehouse2025\Excels\Consolidado_Pais.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{E123EF7F-7D6F-400A-AAC0-8862E30F1D24}"
+      DTS:ObjectName="Administrador de conexiones con Excel 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Quike\OneDrive\Documentos\GitHub\datawarehouse2025\Excels\Consolidados.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -450,8 +462,8 @@
               <connections>
                 <connection
                   refId="Package\DFT_Consolidado_Roaming\Excel Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel]"
-                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -573,8 +585,8 @@
               <connections>
                 <connection
                   refId="Package\DFT_Consolidado_Roaming\Excel Destination 1.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel]"
-                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
